@@ -71,12 +71,12 @@ window.addEventListener("DOMContentLoaded", () => {
     const buttonClear = document.getElementById("grids4")
     buttonClear.innerText = "clear"
     buttonClear.addEventListener("click", () => {
-        results.innerText = '';
+        results.innerText = ' ';
     })
     const buttonPlus = document.getElementById("grids8")
     buttonPlus.innerText = "+"
     buttonPlus.addEventListener("click", () => {
-        results.innerText += '+';
+        results.innerText += " + ";
     })
 
 
