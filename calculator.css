@@ -13,9 +13,11 @@
     background-color: beige;
 }
 #grids {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px black solid;
     height: 50px;
     width: 50px;
-    text-align: center;
     background-color: white;
 }

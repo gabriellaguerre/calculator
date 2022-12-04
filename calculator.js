@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
     frame.setAttribute("class", "frame")
     document.body.appendChild(frame)
 
-    //creating each grid
+    //creating each grid button
     for(let i = 1; i <= 16; i++) {
         let grid = document.createElement("div")
         grid.setAttribute("id", "grids")
@@ -12,6 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
         frame.appendChild(grid)
     }
 
-    
+
 
 })
