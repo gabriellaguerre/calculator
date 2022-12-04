@@ -2,22 +2,32 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    border: 2px black solid;
+    border: 1px black solid;
     height: 300px;
     width: 250px;
     position: relative;
     left: 200px;
-    top: 50px;
+    top: 150px;
     justify-items: center;
     align-items: center;
     background-color: beige;
 }
-#grids {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px black solid;
+.buttons {
     height: 50px;
     width: 50px;
-    background-color: white;
+    box-shadow: 1px 1px red;
+}
+
+
+#result {
+    display: flex;
+    height: 30px;
+    width: 250px;
+    border: 1px black solid;
+    position: relative;
+    bottom: 200px;
+    left: 200px;
+    background-color: rgb(232, 232, 238);
+    justify-content: end;
+    align-items: center;
 }
