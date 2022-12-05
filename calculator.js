@@ -70,33 +70,31 @@ window.addEventListener("DOMContentLoaded", () => {
     buttonClear.innerText = "clear"
     buttonClear.addEventListener("click", () => {
         results.value = ' ';
+        localStorage.removeItem("operation")
     })
     const buttonPlus = document.getElementById("grids8")
     buttonPlus.innerText = "+"
     buttonPlus.addEventListener("click", () => {
-        results.value += " + ";
+        results.value += "+";
 
     })
     const buttonMinus = document.getElementById("grids12")
     buttonMinus.innerText = "-"
     buttonMinus.addEventListener("click", () => {
-        results.value += " - ";
+        results.value += "-";
     })
-    const buttonEquals = document.getElementById("grids16")
-    buttonEquals.innerText = "="
-    buttonEquals.addEventListener("click", () => {
-        localStorage.setItem("operation", results.value)
 
-    })
+
+
     const buttonTimes = document.getElementById("grids15")
     buttonTimes.innerText = "x"
     buttonTimes.addEventListener("click", () => {
-        results.value += " x ";
+        results.value += "x";
     })
     const buttonDivide = document.getElementById("grids14")
     buttonDivide.innerText = "/"
     buttonDivide.addEventListener("click", () => {
-        results.value += " / ";
+        results.value += "/";
     })
     const buttonPeriod = document.getElementById("grids13")
     buttonPeriod.innerText = "."
@@ -106,6 +104,29 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
     //mathematical operations
-    
+    const buttonEquals = document.getElementById("grids16")
+    buttonEquals.innerText = "="
+    buttonEquals.addEventListener("click", () => {
+        localStorage.setItem("operation", results.value)
+
+    let operation = localStorage.getItem("operation")
+    if(operation) {
+        if(operation.includes("+")) {
+            let sum = 0;
+            let operationArr = operation.split("+")
+            for(let i = 0; i < operationArr.length; i++) {
+                let number = Number(operationArr[i]);
+                sum += number;
+            }
+            results.value = sum;
+
+        }
+
+    }
+
+});
+
+
+
 
 })
