@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(frame)
 
     //creating each grid button
-    for(let i = 1; i <= 16; i++) {
+    for (let i = 1; i <= 16; i++) {
         let grid = document.createElement("button")
         grid.setAttribute("id", `grids${i}`)
         grid.classList.add("buttons")
@@ -13,13 +13,13 @@ window.addEventListener("DOMContentLoaded", () => {
         frame.appendChild(grid)
     }
 
-   //results bar
-   const results = document.createElement("input")
-   results.setAttribute("id", "result")
-   document.body.append(results)
+    //results bar
+    const results = document.createElement("input")
+    results.setAttribute("id", "result")
+    document.body.append(results)
 
 
-   //calculator number buttons
+    //calculator number buttons
     const button1 = document.getElementById("grids1")
     button1.addEventListener("click", () => {
         results.value += 1;
@@ -69,8 +69,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const buttonClear = document.getElementById("grids4")
     buttonClear.innerText = "clear"
     buttonClear.addEventListener("click", () => {
-        results.value = ' ';
+        results.value = '';
         localStorage.removeItem("operation")
+        localStorage.removeItem("value")
     })
     const buttonPlus = document.getElementById("grids8")
     buttonPlus.innerText = "+"
@@ -83,8 +84,6 @@ window.addEventListener("DOMContentLoaded", () => {
     buttonMinus.addEventListener("click", () => {
         results.value += "-";
     })
-
-
 
     const buttonTimes = document.getElementById("grids15")
     buttonTimes.innerText = "x"
@@ -106,27 +105,48 @@ window.addEventListener("DOMContentLoaded", () => {
     //mathematical operations
     const buttonEquals = document.getElementById("grids16")
     buttonEquals.innerText = "="
+
     buttonEquals.addEventListener("click", () => {
         localStorage.setItem("operation", results.value)
+        let operation = localStorage.getItem("operation")
 
-    let operation = localStorage.getItem("operation")
-    if(operation) {
-        if(operation.includes("+")) {
-            let sum = 0;
-            let operationArr = operation.split("+")
-            for(let i = 0; i < operationArr.length; i++) {
-                let number = Number(operationArr[i]);
-                sum += number;
+        if (operation.length === 3) {
+
+            if (operation.includes("+")) {
+                let operationAdd = operation.split("+");
+                let numberOne = Number(operationAdd[0])
+                let numberTwo = Number(operationAdd[1])
+
+                results.value = numberOne + numberTwo;
+                localStorage.setItem("value", results.value)
             }
-            results.value = sum;
+            if (operation.includes("-")) {
+                let operationSub = operation.split("-");
+                let numberOne = Number(operationSub[0])
+                let numberTwo = Number(operationSub[1])
+
+                results.value = numberOne - numberTwo;
+                localStorage.setItem("value", results.value)
+            }
+            if (operation.includes("x")) {
+                let operationMult = operation.split("x");
+                let numberOne = Number(operationMult[0])
+                let numberTwo = Number(operationMult[1])
+
+                results.value = numberOne * numberTwo;
+                localStorage.setItem("value", results.value)
+            }
+            if (operation.includes("/")) {
+                let operationDiv = operation.split("/");
+                let numberOne = Number(operationDiv[0])
+                let numberTwo = Number(operationDiv[1])
+
+                results.value = numberOne / numberTwo;
+                localStorage.setItem("value", results.value)
+            }
+
 
         }
 
-    }
-
-});
-
-
-
-
+    });
 })
