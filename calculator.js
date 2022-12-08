@@ -22,46 +22,101 @@ window.addEventListener("DOMContentLoaded", () => {
     //calculator number buttons
     const button1 = document.getElementById("grids1")
     button1.addEventListener("click", () => {
-        results.value += 1;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 1;
+        } else {
+            results.value += 1;
+        }
+
 
     })
     const button2 = document.getElementById("grids2")
     button2.addEventListener("click", () => {
-        results.value += 2;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 2;
+        } else {
+            results.value += 2;
+        }
     })
     const button3 = document.getElementById("grids3")
     button3.addEventListener("click", () => {
-        results.value += 3;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 3;
+        } else {
+            results.value += 3;
+        }
     })
     const button4 = document.getElementById("grids5")
     button4.innerText = 4;
     button4.addEventListener("click", () => {
-        results.value += 4;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 4;
+        } else {
+            results.value += 4;
+        }
     })
     const button5 = document.getElementById("grids6")
     button5.innerText = 5;
     button5.addEventListener("click", () => {
-        results.value += 5;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 5;
+        } else {
+            results.value += 5;
+        }
     })
     const button6 = document.getElementById("grids7")
     button6.innerText = 6;
     button6.addEventListener("click", () => {
-        results.value += 6;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 6;
+        } else {
+            results.value += 6;
+        }
     })
     const button7 = document.getElementById("grids9")
     button7.innerText = 7;
     button7.addEventListener("click", () => {
-        results.value += 7;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 7;
+        } else {
+            results.value += 7;
+        }
     })
     const button8 = document.getElementById("grids10")
     button8.innerText = 8;
     button8.addEventListener("click", () => {
-        results.value += 8;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 8;
+        } else {
+            results.value += 8;
+        }
     })
     const button9 = document.getElementById("grids11")
     button9.innerText = 9;
     button9.addEventListener("click", () => {
-        results.value += 9;
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 9;
+        } else {
+            results.value += 9;
+        }
     })
 
 
@@ -110,42 +165,72 @@ window.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("operation", results.value)
         let operation = localStorage.getItem("operation")
 
-        if (operation.length === 3) {
+        let numString1 = '';
+        let numString2 = '';
 
-            if (operation.includes("+")) {
-                let operationAdd = operation.split("+");
-                let numberOne = Number(operationAdd[0])
-                let numberTwo = Number(operationAdd[1])
-
-                results.value = numberOne + numberTwo;
-                localStorage.setItem("value", results.value)
+        if (operation.includes("+")) {
+            let index = operation.indexOf("+")
+            for (let i = 0; i < index; i++) {
+                let firstVal = operation[i]
+                numString1 += firstVal
             }
-            if (operation.includes("-")) {
-                let operationSub = operation.split("-");
-                let numberOne = Number(operationSub[0])
-                let numberTwo = Number(operationSub[1])
-
-                results.value = numberOne - numberTwo;
-                localStorage.setItem("value", results.value)
+            for (let i = index + 1; i < operation.length; i++) {
+                let secondVal = operation[i]
+                numString2 += secondVal
             }
-            if (operation.includes("x")) {
-                let operationMult = operation.split("x");
-                let numberOne = Number(operationMult[0])
-                let numberTwo = Number(operationMult[1])
+            let numberOne = Number(numString1)
+            let numberTwo = Number(numString2)
 
-                results.value = numberOne * numberTwo;
-                localStorage.setItem("value", results.value)
+            results.value = numberOne + numberTwo;
+            localStorage.setItem("value", results.value)
+        }
+        if (operation.includes("-")) {
+            let index = operation.indexOf("-")
+            for (let i = 0; i < index; i++) {
+                let firstVal = operation[i]
+                numString1 += firstVal
             }
-            if (operation.includes("/")) {
-                let operationDiv = operation.split("/");
-                let numberOne = Number(operationDiv[0])
-                let numberTwo = Number(operationDiv[1])
-
-                results.value = numberOne / numberTwo;
-                localStorage.setItem("value", results.value)
+            for (let i = index + 1; i < operation.length; i++) {
+                let secondVal = operation[i]
+                numString2 += secondVal
             }
+            let numberOne = Number(numString1)
+            let numberTwo = Number(numString2)
 
+            results.value = numberOne - numberTwo;
+            localStorage.setItem("value", results.value)
+        }
+        if (operation.includes("x")) {
+            let index = operation.indexOf("x")
+            for (let i = 0; i < index; i++) {
+                let firstVal = operation[i]
+                numString1 += firstVal
+            }
+            for (let i = index + 1; i < operation.length; i++) {
+                let secondVal = operation[i]
+                numString2 += secondVal
+            }
+            let numberOne = Number(numString1)
+            let numberTwo = Number(numString2)
 
+            results.value = numberOne * numberTwo;
+            localStorage.setItem("value", results.value)
+        }
+        if (operation.includes("/")) {
+            let index = operation.indexOf("/")
+            for (let i = 0; i < index; i++) {
+                let firstVal = operation[i]
+                numString1 += firstVal
+            }
+            for (let i = index + 1; i < operation.length; i++) {
+                let secondVal = operation[i]
+                numString2 += secondVal
+            }
+            let numberOne = Number(numString1)
+            let numberTwo = Number(numString2)
+
+            results.value = numberOne / numberTwo;
+            localStorage.setItem("value", results.value)
         }
 
     });
