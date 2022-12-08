@@ -4,8 +4,10 @@ window.addEventListener("DOMContentLoaded", () => {
     frame.setAttribute("class", "frame")
     document.body.appendChild(frame)
 
+    
+
     //creating each grid button
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 1; i <= 20; i++) {
         let grid = document.createElement("button")
         grid.setAttribute("id", `grids${i}`)
         grid.classList.add("buttons")
@@ -13,13 +15,13 @@ window.addEventListener("DOMContentLoaded", () => {
         frame.appendChild(grid)
     }
 
-    //results bar
+    //results bar//////////////////////////////////////////////
     const results = document.createElement("input")
     results.setAttribute("id", "result")
     document.body.append(results)
 
 
-    //calculator number buttons
+    //calculator number buttons////////////////////////////////////
     const button1 = document.getElementById("grids1")
     button1.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
@@ -29,7 +31,6 @@ window.addEventListener("DOMContentLoaded", () => {
         } else {
             results.value += 1;
         }
-
 
     })
     const button2 = document.getElementById("grids2")
@@ -118,9 +119,30 @@ window.addEventListener("DOMContentLoaded", () => {
             results.value += 9;
         }
     })
+    const button0 = document.getElementById("grids14")
+    button0.innerText = 0;
+    button0.addEventListener("click", () => {
+        let valueScreen = localStorage.getItem("value")
+        if(valueScreen) {
+            localStorage.removeItem("value")
+            results.value = 0;
+        } else {
+            results.value += 0;
+        }
+    })
 
+    //Blank buttons///////////////////////////////////////
+    const button13 = document.getElementById("grids13")
+    button13.innerText = '';
 
-    //calculator operation buttons
+    const button15 = document.getElementById("grids15")
+    button15.innerText = '';
+
+    const button20 = document.getElementById("grids20")
+    button20.innerText = '';
+
+    //calculator operation buttons//////////////////////////////////
+
     const buttonClear = document.getElementById("grids4")
     buttonClear.innerText = "clear"
     buttonClear.addEventListener("click", () => {
@@ -140,17 +162,17 @@ window.addEventListener("DOMContentLoaded", () => {
         results.value += "-";
     })
 
-    const buttonTimes = document.getElementById("grids15")
+    const buttonTimes = document.getElementById("grids19")
     buttonTimes.innerText = "x"
     buttonTimes.addEventListener("click", () => {
         results.value += "x";
     })
-    const buttonDivide = document.getElementById("grids14")
+    const buttonDivide = document.getElementById("grids18")
     buttonDivide.innerText = "/"
     buttonDivide.addEventListener("click", () => {
         results.value += "/";
     })
-    const buttonPeriod = document.getElementById("grids13")
+    const buttonPeriod = document.getElementById("grids17")
     buttonPeriod.innerText = "."
     buttonPeriod.style.fontSize = "30px"
     buttonPeriod.addEventListener("click", () => {
