@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
     frame.setAttribute("class", "frame")
     document.body.appendChild(frame)
 
-    
+
 
     //creating each grid button
     for (let i = 1; i <= 20; i++) {
