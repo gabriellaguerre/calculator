@@ -1,3 +1,4 @@
+import calculation from './helpers.js';
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -5,8 +6,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const frame = document.createElement("div")
     frame.setAttribute("class", "frame")
     document.body.appendChild(frame)
-
-
 
     //creating each grid button
     for (let i = 1; i <= 20; i++) {
@@ -190,59 +189,8 @@ window.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("operation", results.value)
         let operation = localStorage.getItem("operation")
 
-        if (operation.includes("+")) {
-            let index = operation.indexOf("+")
-            results.value = calculation(operation, index);
-        }
-
-        if (operation.includes("-")) {
-            let index = operation.indexOf("-")
-            results.value = calculation(operation, index);
-        }
-
-        if (operation.includes("x")) {
-            let index = operation.indexOf("x")
-            results.value = calculation(operation, index);
-        }
-
-        if (operation.includes("/")) {
-            let index = operation.indexOf("/")
-            results.value = calculation(operation, index);
-        }
-
-        function calculation(operation, index) {
-            let numString1 = '';
-            let numString2 = '';
-
-            for (let i = 0; i < index; i++) {
-                let firstVal = operation[i]
-                numString1 += firstVal
-            }
-            for (let i = index + 1; i < operation.length; i++) {
-                let secondVal = operation[i]
-                numString2 += secondVal
-            }
-            let numberOne = Number(numString1)
-            let numberTwo = Number(numString2)
-
-            if (operation.includes("+")) {
-                let result = numberOne + numberTwo
-                return result;
-            }
-            if (operation.includes("x")) {
-                let result = numberOne * numberTwo;
-                return result;
-            }
-            if (operation.includes("/")) {
-                let result = numberOne / numberTwo;
-                return result;
-            }
-            if (operation.includes("-")) {
-                let result = numberOne - numberTwo;
-                return result;
-            }
-
-        }
+        results.value = calculation(operation);
+        localStorage.setItem("value", results.value)
 
     });
 })
