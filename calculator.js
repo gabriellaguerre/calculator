@@ -1,4 +1,6 @@
+
 window.addEventListener("DOMContentLoaded", () => {
+
     //build calculator frame
     const frame = document.createElement("div")
     frame.setAttribute("class", "frame")
@@ -25,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const button1 = document.getElementById("grids1")
     button1.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 1;
         } else {
@@ -36,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const button2 = document.getElementById("grids2")
     button2.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 2;
         } else {
@@ -46,7 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const button3 = document.getElementById("grids3")
     button3.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 3;
         } else {
@@ -57,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button4.innerText = 4;
     button4.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 4;
         } else {
@@ -68,7 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button5.innerText = 5;
     button5.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 5;
         } else {
@@ -79,7 +81,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button6.innerText = 6;
     button6.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 6;
         } else {
@@ -90,7 +92,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button7.innerText = 7;
     button7.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 7;
         } else {
@@ -101,7 +103,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button8.innerText = 8;
     button8.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 8;
         } else {
@@ -112,7 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button9.innerText = 9;
     button9.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 9;
         } else {
@@ -123,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
     button0.innerText = 0;
     button0.addEventListener("click", () => {
         let valueScreen = localStorage.getItem("value")
-        if(valueScreen) {
+        if (valueScreen) {
             localStorage.removeItem("value")
             results.value = 0;
         } else {
@@ -181,65 +183,37 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //mathematical operations
     const buttonEquals = document.getElementById("grids16")
-    buttonEquals.innerText = "="
+    buttonEquals.innerText = "=";
 
     buttonEquals.addEventListener("click", () => {
+
         localStorage.setItem("operation", results.value)
         let operation = localStorage.getItem("operation")
 
-        let numString1 = '';
-        let numString2 = '';
-
         if (operation.includes("+")) {
             let index = operation.indexOf("+")
-            for (let i = 0; i < index; i++) {
-                let firstVal = operation[i]
-                numString1 += firstVal
-            }
-            for (let i = index + 1; i < operation.length; i++) {
-                let secondVal = operation[i]
-                numString2 += secondVal
-            }
-            let numberOne = Number(numString1)
-            let numberTwo = Number(numString2)
-
-            results.value = numberOne + numberTwo;
-            localStorage.setItem("value", results.value)
+            results.value = calculation(operation, index);
         }
+
         if (operation.includes("-")) {
             let index = operation.indexOf("-")
-            for (let i = 0; i < index; i++) {
-                let firstVal = operation[i]
-                numString1 += firstVal
-            }
-            for (let i = index + 1; i < operation.length; i++) {
-                let secondVal = operation[i]
-                numString2 += secondVal
-            }
-            let numberOne = Number(numString1)
-            let numberTwo = Number(numString2)
-
-            results.value = numberOne - numberTwo;
-            localStorage.setItem("value", results.value)
+            results.value = calculation(operation, index);
         }
+
         if (operation.includes("x")) {
             let index = operation.indexOf("x")
-            for (let i = 0; i < index; i++) {
-                let firstVal = operation[i]
-                numString1 += firstVal
-            }
-            for (let i = index + 1; i < operation.length; i++) {
-                let secondVal = operation[i]
-                numString2 += secondVal
-            }
-            let numberOne = Number(numString1)
-            let numberTwo = Number(numString2)
-
-            results.value = numberOne * numberTwo;
-            localStorage.setItem("value", results.value)
+            results.value = calculation(operation, index);
         }
+
         if (operation.includes("/")) {
             let index = operation.indexOf("/")
+            results.value = calculation(operation, index);
+        }
+
+        function calculation(operation, index) {
+            let numString1 = '';
+            let numString2 = '';
+
             for (let i = 0; i < index; i++) {
                 let firstVal = operation[i]
                 numString1 += firstVal
@@ -251,8 +225,23 @@ window.addEventListener("DOMContentLoaded", () => {
             let numberOne = Number(numString1)
             let numberTwo = Number(numString2)
 
-            results.value = numberOne / numberTwo;
-            localStorage.setItem("value", results.value)
+            if (operation.includes("+")) {
+                let result = numberOne + numberTwo
+                return result;
+            }
+            if (operation.includes("x")) {
+                let result = numberOne * numberTwo;
+                return result;
+            }
+            if (operation.includes("/")) {
+                let result = numberOne / numberTwo;
+                return result;
+            }
+            if (operation.includes("-")) {
+                let result = numberOne - numberTwo;
+                return result;
+            }
+
         }
 
     });
